@@ -1,0 +1,24 @@
+FileList(1)
+​
+0: File
+​​
+lastModified: 1575005252000
+​​
+name: "test.pdf"
+​​
+size: 18255
+​​
+type: "application/pdf"
+​​
+webkitRelativePath: ""
+​​
+<prototype>: FilePrototype { name: Getter, lastModified: Getter, webkitRelativePath: Getter, … }
+​
+length: 1
+​
+<prototype>: FileListPrototype { item: item(), length: Getter, … }
+encode.js:3:13
+in bynary:[object FileList] encode.js:6:11
+TypeError: Argument 1 of FileReader.readAsDataURL does not implement interface Blob. encode.js:13:16
+    encode file:///home/yuta/documents/Blockchain/erc721_1120/server/public/js/encode.js:13
+    onclick file:///home/yuta/documents/Blockchain/erc721_1120/server/public/index.html:1
