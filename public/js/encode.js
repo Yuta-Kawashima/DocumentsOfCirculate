@@ -1,15 +1,9 @@
 function encode(){
+    alert('encode.js');
     let file = document.getElementById("encoded_file").files[0];
     Read = new FileReader();
     Read.readAsDataURL(file);
-    //Read.readAsText(file);
-    //Read.readAsBinaryString(file);
-    //console.log("file[0]:" + file);
-    //console.log(file);
-    //console.log("file[0].name:" + file.name);
-    //console.log("file[0].size:" + file.size);
-    //console.log("file[0].lastModified:" + file.lastModified);
-
+ 
     Read.onload = function(){
         console.log(Read.result);
         crypto(Read.result);
