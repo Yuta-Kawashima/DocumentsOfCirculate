@@ -1,12 +1,17 @@
 function encode(){
-    alert('encode.js');
     let file = document.getElementById("encoded_file").files[0];
     Read = new FileReader();
+
     Read.readAsDataURL(file);
  
     Read.onload = function(){
-        console.log(Read.result);
-        crypto(Read.result);
+        console.log("Read.result:" + Read.result.length);    
+        var UTF8 = encodeURIComponent(Read.result); // UTF16 → UTF8
+        console.log("UTF8:" + UTF8.length);
+        var base64 = btoa(Read.result);
+        console.log("base64:" + base64.length);
+        console.log(base64);
+        console.log(deflate(crypto(Read.result)));
     }
     file_json = {
         'name' : file.name,
@@ -38,4 +43,11 @@ function crypto(file){
   // 復号化
   var DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, MattsRSAkey);
   console.log("DecryptionResult:", DecryptionResult);
+}
+
+function deflate(val) {
+    val = encodeURIComponent(val); // UTF16 → UTF8
+    val = RawDeflate.deflate(val); // 圧縮
+    val = btoa(val); // base64エンコード
+    return val;
 }

@@ -28,6 +28,23 @@ function getFromClient(request, response){
                 response.end();
             });
           break;
+          case '/js/metamask.js':
+              fs.readFile('./public/js/metamask.js',
+              function(err,data){
+                  response.writeHead(200,{"Content-Type":"text/javascript"});
+                  response.write(data);
+                  response.end();
+              });
+            break;
+
+        case '/js/deflate.js':
+            fs.readFile('./public/js/deflate.js',
+            function(err,data){
+                response.writeHead(200,{"Content-Type":"text/javascript"});
+                response.write(data);
+                response.end();
+            });
+          break;
         case '/js/cryptico-js/cryptico.js':
             fs.readFile('./public/js/cryptico-js/cryptico.js', 
             function(err, data){
