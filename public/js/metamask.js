@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
         //var Web3 = require('web3');
 		console.log(web3.version.api);
   	    //web3js = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/53e08536afd6437abb22e4f0e56ff2e3"));
-        web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));   
+        web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));   
         web3.eth.getAccounts((error, accounts) => console.log("getAccounts:" + accounts[0]));
 		  //web3.eth.getAccounts(function (err, accounts) { console.log(accounts[0]) });
   	    var account = web3.eth.accounts[0];
@@ -23,7 +23,7 @@ window.addEventListener('load', function() {
   			} else {
     			console.log('No web3? You should consider trying MetaMask!')
                 //web3js = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/53e08536afd6437abb22e4f0e56ff2e3"));
-                web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));
+                web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   	}
 })
 
