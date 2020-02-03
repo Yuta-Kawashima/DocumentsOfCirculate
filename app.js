@@ -45,6 +45,24 @@ function getFromClient(request, response){
                 response.end();
             });
           break;
+
+          case '/js/contract_config.js':
+              fs.readFile('./public/js/contract_config.js',
+              function(err,data){
+                  response.writeHead(200,{"Content-Type":"text/javascript"});
+                  response.write(data);
+                  response.end();
+              });
+            break;
+
+            case '/js/stock_contract.js':
+                fs.readFile('./public/js/stock_contract.js',
+                function(err,data){
+                    response.writeHead(200,{"Content-Type":"text/javascript"});
+                    response.write(data);
+                    response.end();
+                });
+              break;
         case '/js/cryptico-js/cryptico.js':
             fs.readFile('./public/js/cryptico-js/cryptico.js', 
             function(err, data){
@@ -53,6 +71,7 @@ function getFromClient(request, response){
                 response.end();
             });
             break;
+            
         default:
             response.writeHead(200, {'Content-Type':'text/plain' });
             response.end("no pages ...");

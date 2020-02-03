@@ -1,7 +1,6 @@
 function encode(){
     let file = document.getElementById("encoded_file").files[0];
     Read = new FileReader();
-
     Read.readAsDataURL(file);
  
     Read.onload = function(){
@@ -11,7 +10,11 @@ function encode(){
         var base64 = btoa(Read.result);
         console.log("base64:" + base64.length);
         console.log(base64);
-        console.log(deflate(crypto(Read.result)));
+        //var Doc_info =  deflate(crypto(Read.result));
+        //console.log(deflate(crypto(Read.result)));
+        var Doc_info = base64;
+        console.log("send contoract function");
+        stock_contract(Doc_info);
     }
     file_json = {
         'name' : file.name,

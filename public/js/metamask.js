@@ -11,7 +11,8 @@ window.addEventListener('load', function() {
         //var Web3 = require('web3');
 		console.log(web3.version.api);
   	    //web3js = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/53e08536afd6437abb22e4f0e56ff2e3"));
-        web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));   
+        //web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));   
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));   
         web3.eth.getAccounts((error, accounts) => console.log("getAccounts:" + accounts[0]));
 		  //web3.eth.getAccounts(function (err, accounts) { console.log(accounts[0]) });
   	    var account = web3.eth.accounts[0];
@@ -23,7 +24,7 @@ window.addEventListener('load', function() {
   			} else {
     			console.log('No web3? You should consider trying MetaMask!')
                 //web3js = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/53e08536afd6437abb22e4f0e56ff2e3"));
-                web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+                web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
   	}
 })
 
@@ -51,37 +52,30 @@ web3.version.getNetwork((err, netId) => {
       }
 })
       
-   startApp();
+startApp();
 
- function startApp(){
- 	  web3.eth.getAccounts(function(error, accounts) {
- 	      if (error) return;
- 	      user_account = accounts[0];
- 	      if(typeof user_account != 'undefined'){
- 	          	  console.log("user_account:" + user_account);
- 		            web3.eth.getBalance(user_account, (err, wei) => {
-	 	                if (error) return;
-	 		               //console.log(JSON.stringify(wei, null, 2));
-	 		               balance = JSON.stringify(wei, null, 2);
-	 		           	   //console.log(web3.version);
-   			        });
-       }else{
-           console.log("Not login:ログインして下さい");
-       }
+function startApp(){
+	web3.eth.getAccounts(function(error, accounts) {
+		if (error) return;
+		user_account = accounts[0];
+		if(user_account != 'undefined'){
+			console.log("user_account:" + user_account);
+			web3.eth.getBalance(user_account, (err, wei) => {
+			if (error) return;
+			balance = JSON.stringify(wei, null, 2);	
+			//console.log(JSON.stringify(wei, null, 2));
+			//console.log(web3.version);
+			});
+		}else{
+			console.log("Not login:ログインして下さい");
+       	}
    });
  }
  
  function GetBalance(){
- 	/*
-	web3.eth.getAccounts(function(error, accounts){
-		if(error) return;
-		let user_account = accounts[0];
-		if(typeof user_account != 'undefined'){
-	*/
 	web3.eth.getBalance(user_account, (err, wei) => {
 			console.log(JSON.stringify(wei, null, 2));
 			balance = JSON.stringify(wei, null, 2)
 			s.emit("getBalance", balance);
 	});
-		//}
 }

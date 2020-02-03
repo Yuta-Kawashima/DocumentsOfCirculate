@@ -1,51 +1,58 @@
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script type = "text/javascript" src="./js/encode.js"></script>
-    <script type="text/javascript" src="./js/cryptico-js/cryptico.js"></script>
-    <script type="text/javascript" src="./js/metamask.js"></script>
-    <script type = "text/javascript" src = "./js/deflate.js"></script>
-    <!-- Web3連携用のURL。Node.js上でどんな挙動をするのかが未知数。要確認 -->
-    <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>-->
-	<!--<script type="text/javascript" src="https://rawgit.com/ethereumjs/browser-builds/master/dist/ethereumjs-abi/ethereumjs-abi-0.6.5.js"></script>
-	<script type="text/javascript" src="https://rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>-->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <title>PDF is converted to Crypto for use Blockchain</title>
-</head>
-<body>
-    <script>
-        window.addEventListener('load', function() {
-            if (typeof web3 !== 'undefined') {
-              web3js = new Web3(web3.currentProvider);
-            } else {
-                //入れてない時の処理。エラーなりベタ打ちなり
-                console.log("addEventLister error!");
-            }
-        });
-    </script>
-    <header>
-        <h1>Convert PDF to JSON</h1>
-    </header>
-    <div class = "main">
-        <div class = "input_form" name = "input_form">
-            <form action="/" method = post>
-                <h2>convert file</h2>
-                <ul>
-                    <li>
-                        <input type="file" id = "encoded_file">
-                    </li>
-                    <li>
-                        <input id="Convert" type="button" value="変換" onclick="encode()" />
-                        <button type="submit">POST</button>
-                    </li>
-                </ul>
-            </form>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>PDF is converted to Crypto for use Blockchain</title>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./js/contract_config.js"></script>
+        <script type="text/javascript" src="./js/encode.js"></script>
+        <script type="text/javascript" src="./js/cryptico-js/cryptico.js"></script>
+        <script type="text/javascript" src="./js/metamask.js"></script>
+        <script type="text/javascript" src = "./js/deflate.js"></script>
+        <script type="text/javascript" src="./js/stock_contract.js"></script>
+        <!-- Web3連携用のURL。Node.js上でどんな挙動をするのかが未知数。要確認 -->
+        <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>-->
+        <!--<script type="text/javascript" src="https://rawgit.com/ethereumjs/browser-builds/master/dist/ethereumjs-abi/ethereumjs-abi-0.6.5.js"></script>
+        <script type="text/javascript" src="https://rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>-->
+    </head>
+    <body>
+        <script>
+            window.addEventListener('load', function() {
+                if (typeof web3 !== 'undefined') {
+                  web3js = new Web3(web3.currentProvider);
+                } else {
+                    //入れてない時の処理。エラーなりベタ打ちなり
+                    console.log("addEventLister error!");
+                }
+            });
+        </script>
+        <header>
+            <h1>Convert PDF to JSON</h1>
+        </header>
+        <div class = "main">
+            <div class = "input_form" name = "input_form">
+                <form action="/" method = post name="mainForm">
+                    <h2>convert file</h2>
+                    <ul>
+                        <li>
+                            <input type="file" id = "encoded_file">
+                        </li>
+                        <li>
+                            <input id="Convert" type="button" value="変換" onclick="encode()" />
+                            <button type="submit">POST</button>
+                        </li>
+                        <li>
+                            <input id ="toAddress" type="text" name="toAddress">
+                        </li>
+                        <li>
+                            <input id="stock" type="button" value="格納" onclick="stock_contract()"/>
+                        </li>
+                    </ul>
+                </form>
+            </div>
         </div>
-    </div>
-    <footer></footer>
-</body>
-
+        <footer></footer>
+    </body>
 </html>

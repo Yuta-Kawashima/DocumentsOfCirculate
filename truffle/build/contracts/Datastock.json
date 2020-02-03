@@ -3110,6 +3110,53 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
+    "5777": {
+      "events": {
+        "0xba21660700f77617cade5b53f9d953becadd95f1fd719235c4a01f8dedff258d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "x",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "y",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "z",
+              "type": "string"
+            }
+          ],
+          "name": "StockEvent",
+          "type": "event",
+          "signature": "0xba21660700f77617cade5b53f9d953becadd95f1fd719235c4a01f8dedff258d"
+        },
+        "0xf1bed61f3429d2b721e97e107716050bb4e189b06bc2cc05c3e5c2c185f92c68": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "callNumber",
+          "type": "event",
+          "signature": "0xf1bed61f3429d2b721e97e107716050bb4e189b06bc2cc05c3e5c2c185f92c68"
+        }
+      },
+      "links": {},
+      "address": "0xe8Ed50658a8f12B60F15BDE3D5549e5109342442",
+      "transactionHash": "0xe1494658f3f675d770f2a4bc1e304de320cff8cb13a6928123228869087e17eb"
+    },
     "1579365697489": {
       "events": {
         "0xba21660700f77617cade5b53f9d953becadd95f1fd719235c4a01f8dedff258d": {
@@ -3159,7 +3206,7 @@
     }
   },
   "schemaVersion": "3.0.18",
-  "updatedAt": "2020-01-18T16:43:44.846Z",
+  "updatedAt": "2020-02-03T07:55:37.008Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
