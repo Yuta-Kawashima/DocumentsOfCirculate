@@ -1,10 +1,10 @@
-function encode(){
+function encode() {
     let file = document.getElementById("encoded_file").files[0];
     Read = new FileReader();
     Read.readAsDataURL(file);
- 
-    Read.onload = function(){
-        console.log("Read.result:" + Read.result.length);    
+
+    Read.onload = function () {
+        console.log("Read.result:" + Read.result.length);
         var UTF8 = encodeURIComponent(Read.result); // UTF16 → UTF8
         console.log("UTF8:" + UTF8.length);
         var base64 = btoa(Read.result);
@@ -14,38 +14,39 @@ function encode(){
         //console.log(deflate(crypto(Read.result)));
         var Doc_info = base64;
         console.log("send contoract function");
+        console.log("文書文字列" + Doc_info);
         stock_contract(Doc_info);
     }
     file_json = {
-        'name' : file.name,
-        'size' : file.size,
-        'lastModified' : file.lastModified
+        'name': file.name,
+        'size': file.size,
+        'lastModified': file.lastModified
     }
     console.log(file_json);
 }
 
-function crypto(file){
-  // RSA鍵の作り方
-  var PassPhrase = "The Moon is a Harsh Mistress.";
-  console.log("PassPhrase:", PassPhrase);
-  var Bits = 1024;
-  var MattsRSAkey = cryptico.generateRSAKey(PassPhrase, Bits);
-  console.log("MattsRSAkey:", MattsRSAkey);
+function crypto(file) {
+    // RSA鍵の作り方
+    var PassPhrase = "The Moon is a Harsh Mistress.";
+    console.log("PassPhrase:", PassPhrase);
+    var Bits = 1024;
+    var MattsRSAkey = cryptico.generateRSAKey(PassPhrase, Bits);
+    console.log("MattsRSAkey:", MattsRSAkey);
 
-  // 公開鍵の作り方
-  var MattsPublicKeyString = cryptico.publicKeyString(MattsRSAkey);
-  console.log("MattsPublicKeyString:", MattsPublicKeyString);
+    // 公開鍵の作り方
+    var MattsPublicKeyString = cryptico.publicKeyString(MattsRSAkey);
+    console.log("MattsPublicKeyString:", MattsPublicKeyString);
 
-  // 暗号化
-  //var PlainText = "Matt, I need you to help me with my Starcraft strategy.";
-  let PlainText = file;
-  console.log("PlainText:", PlainText);
-  var EncryptionResult = cryptico.encrypt(PlainText, MattsPublicKeyString);
-  console.log("EncryptionResult:", EncryptionResult.cipher);
+    // 暗号化
+    //var PlainText = "Matt, I need you to help me with my Starcraft strategy.";
+    let PlainText = file;
+    console.log("PlainText:", PlainText);
+    var EncryptionResult = cryptico.encrypt(PlainText, MattsPublicKeyString);
+    console.log("EncryptionResult:", EncryptionResult.cipher);
 
-  // 復号化
-  var DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, MattsRSAkey);
-  console.log("DecryptionResult:", DecryptionResult);
+    // 復号化
+    var DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, MattsRSAkey);
+    console.log("DecryptionResult:", DecryptionResult);
 }
 
 function deflate(val) {

@@ -1,51 +1,48 @@
-pragma solidity >=0.4.25 <0.6.3;
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721Full.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721Metadata.sol";
+pragma solidity >=0.4.24 <0.6.3;
+import "openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol";
+import "openzeppelin-solidity/contracts/token/ERC721/ERC721Metadata.sol";
 
-contract Asset is ERC721Full{
+contract Asset is ERC721Full {
     constructor(
         string memory name,
         string memory symbol,
-        uint tokenId,
+        uint256 tokenId,
         string memory tokenURI
-    )ERC721Full(name,symbol) public {
+    ) public ERC721Full(name, symbol) {
         _mint(msg.sender, tokenId);
-        _setTokenURI(tokenId,tokenURI);
+        _setTokenURI(tokenId, tokenURI);
     }
-    struct amount{
-        uint count;
+    struct amount {
+        uint256 count;
     }
-    mapping(uint => string[5000]) public URI;
-    mapping(uint => bytes[5000]) public STR;
-    
-    
-    function addTokenURI(uint tokenId, string memory tokenURI) public {
-        uint len = bytes(tokenURI).length;//serch size of URI string
+    mapping(uint256 => string[5000]) public URI;
+    mapping(uint256 => bytes[5000]) public STR;
+
+    function addTokenURI(uint256 tokenId, string memory tokenURI) public {
+        uint256 len = bytes(tokenURI).length; //serch size of URI string
         bytes memory bytesURI = bytes(tokenURI);
-        uint array = (len % 5000) + 1;
-        uint point = 0;//role pointer
-        
+        uint256 array = (len % 5000) + 1;
+        uint256 point = 0; //role pointer
+
         bytes memory strbyte = new bytes(5000);
         string memory sendURI;
-        
-        
-        
-        for(uint i = 0; i < array; i++){
-            for(uint j = 0; j < 5000; j++){
+
+        for (uint256 i = 0; i < array; i++) {
+            for (uint256 j = 0; j < 5000; j++) {
                 strbyte[i] = bytesURI[point];
                 point++;
-                if(j == len){
+                if (j == len) {
                     break;
                 }
             }
             sendURI = string(strbyte);
-            _setTokenURI(tokenId,sendURI);
+            _setTokenURI(tokenId, sendURI);
             tokenId++;
             strbyte = "";
         }
     }
-    
-    function _mintToken(uint tokenId) public {
+
+    function _mintToken(uint256 tokenId) public {
         _mint(msg.sender, tokenId);
     }
 }

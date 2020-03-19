@@ -3135,8 +3135,7 @@
             }
           ],
           "name": "StockEvent",
-          "type": "event",
-          "signature": "0xba21660700f77617cade5b53f9d953becadd95f1fd719235c4a01f8dedff258d"
+          "type": "event"
         },
         "0xf1bed61f3429d2b721e97e107716050bb4e189b06bc2cc05c3e5c2c185f92c68": {
           "anonymous": false,
@@ -3149,13 +3148,12 @@
             }
           ],
           "name": "callNumber",
-          "type": "event",
-          "signature": "0xf1bed61f3429d2b721e97e107716050bb4e189b06bc2cc05c3e5c2c185f92c68"
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0xe8Ed50658a8f12B60F15BDE3D5549e5109342442",
-      "transactionHash": "0xe1494658f3f675d770f2a4bc1e304de320cff8cb13a6928123228869087e17eb"
+      "address": "0x6EE9c4BD8DFf6F76ccc3c4a05AdC80F55C9f5811",
+      "transactionHash": "0x3163135e0042c505a8a5bb9d635439565abba57100a8b0482d6199c56575d14a"
     },
     "1579365697489": {
       "events": {
@@ -3182,8 +3180,7 @@
             }
           ],
           "name": "StockEvent",
-          "type": "event",
-          "signature": "0xba21660700f77617cade5b53f9d953becadd95f1fd719235c4a01f8dedff258d"
+          "type": "event"
         },
         "0xf1bed61f3429d2b721e97e107716050bb4e189b06bc2cc05c3e5c2c185f92c68": {
           "anonymous": false,
@@ -3196,8 +3193,7 @@
             }
           ],
           "name": "callNumber",
-          "type": "event",
-          "signature": "0xf1bed61f3429d2b721e97e107716050bb4e189b06bc2cc05c3e5c2c185f92c68"
+          "type": "event"
         }
       },
       "links": {},
@@ -3205,8 +3201,8 @@
       "transactionHash": "0xc0bc6833a4e96058e39b0fbe78126afa9a99606324978d02713508499ab65b54"
     }
   },
-  "schemaVersion": "3.0.18",
-  "updatedAt": "2020-02-03T07:55:37.008Z",
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-03-18T20:35:50.253Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
