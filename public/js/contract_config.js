@@ -1,3 +1,5 @@
+import Web3 from "web3";
+
 const address = "0x4BCbb9abed19c64fCE4cDb2983EBf074424C999D";
 const abi = [
   {
@@ -57,7 +59,8 @@ const abi = [
     "stateMutability": "nonpayable",
     "type": "function"
   }
-]
+];
 
-const contract = web3.eth.contract(abi).at(address);
+//const contract = web3.eth.contract(abi).at(address);
+const contract = new web3.eth.Contract(abi, address);
 console.log(contract);

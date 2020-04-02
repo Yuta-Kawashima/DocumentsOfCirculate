@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DApps Dev Guild Tutorial</title>
+  <script language="javascript" type="text/javascript" src="./js/web3.min.js"></script>
+  <script language="javascript" type="text/javascript" src="./js/contract_abi.js"></script>
+
+  <script>
+    var contract;
+    var userAccount;
+
+    function startApp() {
+      var contractAddress = "0x970De6b31d4bd0513bC71e0EAa0B2a91f76640cb";
+
+      contract = new web3js.eth.Contract(contractABI, contractAddress);
+
+      var accountInterval = setInterval(function () {
+        web3.eth.getAccounts((error, accounts) => {
+          if (accounts[0] !== userAccount) {
+            userAccount = accounts[0];
+          }
+        });
+      }, 100);
+    }
+
+    window.addEventListener('load', function () {
+      // Checking if Web3 has been injected by the browser(Mist/MetaMask)
+      if (typeof web3 !== 'undefined') {
+        // Use Mist/MetaMask's provider
+        web3js = new Web3(web3.currentProvider);
+      } else {
+        // Handle the case where the user doesn't have Metamask installed
+        // Probably show them a message prompting them to install Metamask
+      }
+      // Now you can start your app & access web3 freely;
+      startApp();
+    });
+
+    function set() {
+      var _val = document.getElementById("val").value;
+      contract.methods.set(_val)
+        .send({ from: userAccount, gas: 1000000 })
+        .on("transactionHash", function (txhash) {
+          alert("Txhash: " + txhash);
+        })
+        .on("receipt", function (receipt) {
+          console.log(receipt);
+        })
+        .on("error", function (error) {
+          alert(error);
+        });
+    }
+
+    function get() {
+      contract.methods.get().call().then(function (_val) {
+        alert(_val);
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <h1>DApps Dev Guild Tutorial</h1>
+
+  <input type="text" name="val" id="val">
+  <input type="button" value="Set" onclick="set()">
+  <input type="button" value="Get" onclick="get()">
+</body>
+
+</html>
