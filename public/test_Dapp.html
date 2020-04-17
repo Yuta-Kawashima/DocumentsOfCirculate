@@ -8,13 +8,18 @@
   <title>DApps Dev Guild Tutorial</title>
   <script language="javascript" type="text/javascript" src="./js/web3.min.js"></script>
   <script language="javascript" type="text/javascript" src="./js/contract_abi.js"></script>
+  <script type="text/javascript" src="./js/encode.js"></script>
+  <script type="text/javascript" src="./js/cryptico-js/cryptico.js"></script>
+  <script type="text/javascript" src="./js/deflate.js"></script>
+  <script type="text/javascript" src="./js/stock_contract.js"></script>
 
   <script>
     var contract;
     var userAccount;
 
     function startApp() {
-      var contractAddress = "0x970De6b31d4bd0513bC71e0EAa0B2a91f76640cb";
+      //var contractAddress = "0x970De6b31d4bd0513bC71e0EAa0B2a91f76640cb";
+      var contractAddress = "0xe4262273516Ab03Fa349959d572c33aCa7245eDB";
 
       contract = new web3js.eth.Contract(contractABI, contractAddress);
 
@@ -43,9 +48,13 @@
     function set() {
       var _val = document.getElementById("val").value;
       contract.methods.set(_val)
-        .send({ from: userAccount, gas: 1000000 })
+        .send({ from: userAccount, gas: 100000000 })
+
+        // .send({ from: userAccount })
         .on("transactionHash", function (txhash) {
           alert("Txhash: " + txhash);
+          // var demo2 = document.getElementById("base64");
+          // demo2.innerHTML = _val;
         })
         .on("receipt", function (receipt) {
           console.log(receipt);
@@ -58,6 +67,34 @@
     function get() {
       contract.methods.get().call().then(function (_val) {
         alert(_val);
+        // const decoded = atob(_val);
+        const decoded = decodeURIComponent(escape(window.atob(_val)));
+        alert(decoded);
+      });
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    function Auto_num() {
+      var _val = document.getElementById("val").value;
+      contract.methods.Auto_num(_val)
+        .send({ from: userAccount, gas: 1000000 })
+
+        // .send({ from: userAccount })
+        .on("transactionHash", function (txhash) {
+          alert("Txhash: " + txhash);
+          // var demo2 = document.getElementById("base64");
+          // demo2.innerHTML = _val;
+        })
+        .on("receipt", function (receipt) {
+          console.log(receipt);
+        })
+        .on("error", function (error) {
+          alert(error);
+        });
+    }
+
+    function gets() {
+      contract.methods.gets().call().then(function (_val) {
+        alert(_val);
       });
     }
   </script>
@@ -69,6 +106,22 @@
   <input type="text" name="val" id="val">
   <input type="button" value="Set" onclick="set()">
   <input type="button" value="Get" onclick="get()">
+  <input type="button" value="Get" onclick="Auto_num()">
+  <input type="button" value="Get" onclick="gets()">
+
+  <br>
+  <span id="base64"></span>
+
+  <br>
+
+  <ul>
+    <li>
+      <input type="file" id="encoded_file">
+    </li>
+    <li>
+      <input id="Convert" type="button" value="変換" onclick="encode()" />
+    </li>
+  </ul>
 </body>
 
 </html>

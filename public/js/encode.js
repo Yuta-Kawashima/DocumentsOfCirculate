@@ -5,17 +5,24 @@ function encode() {
 
     Read.onload = function () {
         console.log("Read.result:" + Read.result.length);
-        var UTF8 = encodeURIComponent(Read.result); // UTF16 → UTF8
-        console.log("UTF8:" + UTF8.length);
+        // var UTF8 = encodeURIComponent(Read.result); // UTF16 → UTF8
+        // console.log("UTF8:" + UTF8.length);
         var base64 = btoa(Read.result);
         console.log("base64:" + base64.length);
         console.log(base64);
+        alert(atob(base64));
         //var Doc_info =  deflate(crypto(Read.result));
         //console.log(deflate(crypto(Read.result)));
-        var Doc_info = base64;
-        console.log("send contoract function");
-        console.log("文書文字列" + Doc_info);
-        stock_contract(Doc_info);
+        // var Doc_info = base64;
+        // console.log("send contoract function");
+        // console.log("文書文字列" + Doc_info);
+        console.log(atob(base64));
+        const _file = new Blob([atob(base64)], {
+            type: 'application/pdf'
+        });
+        const fileURL = URL.createObjectURL(_file);
+        window.open(fileURL);
+        // stock_contract(base64);
     }
     file_json = {
         'name': file.name,
