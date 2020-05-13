@@ -1,9 +1,47 @@
 import Web3 from "web3";
 
-const address = "0x4BCbb9abed19c64fCE4cDb2983EBf074424C999D";
+const address = "0xf36cdeaeaff0646c134fa161c7d680c13cf19f4b";
 const abi = [
   {
-    "constant": true,
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "STR",
+        "type": "string"
+      }
+    ],
+    "name": "Auto_num",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_value",
+        "type": "string"
+      }
+    ],
+    "name": "set",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "get",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -19,12 +57,10 @@ const abi = [
         "type": "uint256"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "constant": true,
     "inputs": [
       {
         "internalType": "uint256",
@@ -40,23 +76,7 @@ const abi = [
         "type": "string"
       }
     ],
-    "payable": false,
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "STR",
-        "type": "string"
-      }
-    ],
-    "name": "Auto_num",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
     "type": "function"
   }
 ];

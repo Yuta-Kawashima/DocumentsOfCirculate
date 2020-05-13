@@ -1,4 +1,4 @@
-function encode() {
+function encode(callback) {
     let file = document.getElementById("encoded_file").files[0];
     Read = new FileReader();
     Read.readAsDataURL(file);//Base64になってる
@@ -22,10 +22,14 @@ function encode() {
         //        const regex = /data:application/pdf; base64;
         console.log("Text64 : " + Text64.replace("data:application/pdf;base64,", ''));
         let Replace_Text = Text64.replace("data:application/pdf;base64,", '');
+
+        console.log("Replace_Text : " + typeof (Replace_Text));
         // alert(Text64.replace("/data:application/pdf; base64;", ''));
         // console.log(Text64.replace(/pdf/base64, ''));
         //        console.log(Text64.replace(regex, ''));
-        toBlob(Replace_Text);
+        //toBlob(Replace_Text);
+
+        // return (Replace_Text);
         ////////////////////////////////////////////////////////////
         // var base64str = base64;
 
@@ -50,6 +54,7 @@ function encode() {
         // const fileURL = URL.createObjectURL(_file);
         // window.open(fileURL);
         // stock_contract(base64);
+        callback(Replace_Text);
     }
     file_json = {
         'name': file.name,
@@ -57,6 +62,7 @@ function encode() {
         'lastModified': file.lastModified
     }
     console.log(file_json);
+
 }
 
 //引数はbase64形式の文字列
@@ -78,7 +84,6 @@ function toBlob(base64) {
         return false;
     }
     console.log(blob);
-    window.open(blob);
     return blob;
 }
 
