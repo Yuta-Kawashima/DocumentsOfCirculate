@@ -3334,10 +3334,55 @@
       "links": {},
       "address": "0x5a387A19848a9fbA219916A1d4438A25BE0505BC",
       "transactionHash": "0xd9e7cb72b9f2364ee6cc3edb0102c5d5d15501295fc4796d6de7a2e319fb9b89"
+    },
+    "1589355144952": {
+      "events": {
+        "0xba21660700f77617cade5b53f9d953becadd95f1fd719235c4a01f8dedff258d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "x",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "y",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "z",
+              "type": "string"
+            }
+          ],
+          "name": "StockEvent",
+          "type": "event"
+        },
+        "0xf1bed61f3429d2b721e97e107716050bb4e189b06bc2cc05c3e5c2c185f92c68": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "callNumber",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x461CFF2E25D12b406dc045B37493b3975a4988e5",
+      "transactionHash": "0xbf682b6bd1e1e761200ca5f84b20d0ea427d26c12769cd5c2f9b8e5d57afaf51"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-08T06:47:00.364Z",
+  "updatedAt": "2020-05-13T07:33:37.083Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

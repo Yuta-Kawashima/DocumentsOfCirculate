@@ -4,45 +4,51 @@ function encode() {
     Read.readAsDataURL(file);//Base64になってる
 
     Read.onload = function () {
-        console.log(Read.result);
-        console.log("Read.result:" + Read.result.length);
+        //console.log(Read.result);
+        console.log("Read.result:" + Read.result);
         // var UTF8 = encodeURIComponent(Read.result); // UTF16 → UTF8
         // console.log("UTF8:" + UTF8.length);
-        var base64 = btoa(Read.result);
+        var base64 = Read.result;
         console.log("base64:" + base64.length);
-        alert(base64);
-        console.log(base64);
-        alert(atob(base64));
+        //alert(base64);
+        console.log("base64:" + base64);
         //var Doc_info =  deflate(crypto(Read.result));
         //console.log(deflate(crypto(Read.result)));
         // var Doc_info = base64;
         // console.log("send contoract function");
         // console.log("文書文字列" + Doc_info);
         // base64 string
-        toBlob(Read.result);
+        let Text64 = Read.result;
+        //        const regex = /data:application/pdf; base64;
+        console.log("Text64 : " + Text64.replace("data:application/pdf;base64,", ''));
+        let Replace_Text = Text64.replace("data:application/pdf;base64,", '');
+        // alert(Text64.replace("/data:application/pdf; base64;", ''));
+        // console.log(Text64.replace(/pdf/base64, ''));
+        //        console.log(Text64.replace(regex, ''));
+        toBlob(Replace_Text);
         ////////////////////////////////////////////////////////////
-        var base64str = base64;
+        // var base64str = base64;
 
-        // decode base64 string, remove space for IE compatibility
-        var binary = atob(base64str.replace(/\s/g, ''));
-        var len = binary.length;
-        var buffer = new ArrayBuffer(len);
-        var view = new Uint8Array(buffer);
-        for (var i = 0; i < len; i++) {
-            view[i] = binary.charCodeAt(i);
-        }
+        // // decode base64 string, remove space for IE compatibility
+        // var binary = atob(base64str.replace(/\s/g, ''));
+        // var len = binary.length;
+        // var buffer = new ArrayBuffer(len);
+        // var view = new Uint8Array(buffer);
+        // for (var i = 0; i < len; i++) {
+        //     view[i] = binary.charCodeAt(i);
+        // }
 
-        // create the blob object with content-type "application/pdf"
-        var blob = new Blob([view], { type: "application/pdf" });
-        var url = URL.createObjectURL(blob);
+        // // create the blob object with content-type "application/pdf"
+        // var blob = new Blob([view], { type: "application/pdf" });
+        // var url = URL.createObjectURL(blob);
 
-        ////////////////////////////////////////////////////////////
-        console.log(atob(base64));
-        const _file = new Blob([atob(base64)], {
-            type: 'application/pdf'
-        });
-        const fileURL = URL.createObjectURL(_file);
-        window.open(fileURL);
+        // ////////////////////////////////////////////////////////////
+        // console.log(atob(base64));
+        // const _file = new Blob([atob(base64)], {
+        //     type: 'application/pdf'
+        // });
+        // const fileURL = URL.createObjectURL(_file);
+        // window.open(fileURL);
         // stock_contract(base64);
     }
     file_json = {
@@ -72,6 +78,7 @@ function toBlob(base64) {
         return false;
     }
     console.log(blob);
+    window.open(blob);
     return blob;
 }
 
