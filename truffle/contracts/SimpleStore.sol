@@ -3,6 +3,7 @@ pragma solidity >=0.4.25 <0.6.3;
 
 contract SimpleStore {
     string value;
+    mapping(uint256 => uint256) public Number;
 
     mapping(uint256 => string) public Store;
 
@@ -35,8 +36,10 @@ contract SimpleStore {
             Store[i] = string(Split);
         }
     }
-
-    function gets() public view returns (mapping) {
+    /*
+    function gets() public view returns (string[] memory) {
+        for(uint256 i = 0; i < ;)
         return (Store);
     }
+    */
 }

@@ -19,7 +19,7 @@
 
     function startApp() {
       //var contractAddress = "0x970De6b31d4bd0513bC71e0EAa0B2a91f76640cb";
-      var contractAddress = "0xe4262273516Ab03Fa349959d572c33aCa7245eDB";
+      var contractAddress = "0x2887D3Ce3a6b9880E0f1C8bbD109E369408BBF43";
 
       contract = new web3js.eth.Contract(contractABI, contractAddress);
 
@@ -27,6 +27,7 @@
         web3.eth.getAccounts((error, accounts) => {
           if (accounts[0] !== userAccount) {
             userAccount = accounts[0];
+            console.log(userAccount);
           }
         });
       }, 100);
@@ -43,9 +44,11 @@
       }
       // Now you can start your app & access web3 freely;
       startApp();
+      console.log("StartAPP()")
     });
 
     function set() {
+      startApp();
       var _val = document.getElementById("val").value;
       contract.methods.set(_val)
         .send({ from: userAccount, gas: 100000000 })
@@ -61,6 +64,7 @@
         })
         .on("error", function (error) {
           alert(error);
+          console.log("Error");
         });
     }
 
@@ -106,9 +110,6 @@
   <input type="text" name="val" id="val">
   <input type="button" value="Set" onclick="set()">
   <input type="button" value="Get" onclick="get()">
-  <input type="button" value="Get" onclick="Auto_num()">
-  <input type="button" value="Get" onclick="gets()">
-
   <br>
   <span id="base64"></span>
 

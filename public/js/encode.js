@@ -1,14 +1,16 @@
 function encode() {
     let file = document.getElementById("encoded_file").files[0];
     Read = new FileReader();
-    Read.readAsDataURL(file);
+    Read.readAsDataURL(file);//Base64になってる
 
     Read.onload = function () {
+        console.log(Read.result);
         console.log("Read.result:" + Read.result.length);
         // var UTF8 = encodeURIComponent(Read.result); // UTF16 → UTF8
         // console.log("UTF8:" + UTF8.length);
         var base64 = btoa(Read.result);
         console.log("base64:" + base64.length);
+        alert(base64);
         console.log(base64);
         alert(atob(base64));
         //var Doc_info =  deflate(crypto(Read.result));
@@ -16,6 +18,25 @@ function encode() {
         // var Doc_info = base64;
         // console.log("send contoract function");
         // console.log("文書文字列" + Doc_info);
+        // base64 string
+        toBlob(Read.result);
+        ////////////////////////////////////////////////////////////
+        var base64str = base64;
+
+        // decode base64 string, remove space for IE compatibility
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+            view[i] = binary.charCodeAt(i);
+        }
+
+        // create the blob object with content-type "application/pdf"
+        var blob = new Blob([view], { type: "application/pdf" });
+        var url = URL.createObjectURL(blob);
+
+        ////////////////////////////////////////////////////////////
         console.log(atob(base64));
         const _file = new Blob([atob(base64)], {
             type: 'application/pdf'
@@ -30,6 +51,28 @@ function encode() {
         'lastModified': file.lastModified
     }
     console.log(file_json);
+}
+
+//引数はbase64形式の文字列
+function toBlob(base64) {
+    var bin = atob(base64.replace(/^.*,/, ''));
+    var buffer = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) {
+        buffer[i] = bin.charCodeAt(i);
+    }
+    // Blobを作成
+    try {
+        var blob = new Blob([buffer.buffer], {
+            type: 'application/pdf'
+        });
+        // var blob = new Blob([view], {
+        //     type: 'application/pdf'
+        // });
+    } catch (e) {
+        return false;
+    }
+    console.log(blob);
+    return blob;
 }
 
 function crypto(file) {
